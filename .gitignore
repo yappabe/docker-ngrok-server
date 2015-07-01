@@ -1,0 +1,7 @@
+ngrok
+device.crt
+device.csr
+device.key
+rootCA.key
+rootCA.srl
+rootCA.pem
