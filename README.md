@@ -77,16 +77,24 @@ docker run -v $(pwd)/bin:/ngrok/bin \
 This will create a `bin` folder on your repository folder with `ngrok` and `ngrokd`. In order to be able to execute them run the following commands (use `sudo` if needed):
 
 ```bash
+chown $USER bin
 chown $USER bin/*
 chmod +x bin/ngrok
 chmod +x bin/ngrokd
 ```
 
-If you are planning to use the built client, remember to create an `ngrok` config file specifying where is your server. For example a `.ngrok` on your home folder. The contents should be:
+If you are planning to use the built client, remember to create an `ngrok` config file specifying where is your server. For example a `.ngrok` on the `bin` folder. The contents should be:
 
 ```
 server_addr: tunnel.yourdomain.com:4443
 trust_host_root_certs: false
+```
+
+So to expose your `localhost:8080` as `something.tunnel.yourdomain.con` you would run do something like:
+
+```bash
+cd bin
+./ngrok -hostname=something.tunnel.yourdomain -config=./ngrok.cfg 8080
 ```
 
 ## Building the binaries on other OS
@@ -129,7 +137,7 @@ docker run --net host \
     -e CA_CERT="`awk 1 ORS='\\n' certificate/rootCA.pem`" \
     -e DOMAIN="tunnel.yourdomain.com:4443" \
     murilopolese/ngrok-server \
-    ./run-client.sh ./run-client.sh -hostname=something.tunnel.yourdomain.com -config=/root/.ngrok 8080
+    ./run-client.sh -hostname=something.tunnel.yourdomain.com -config=/root/.ngrok 8080
 ```
 
 **IMPORTANT**: Remember to switch `tunnel.yourdomain.com:4443` by your domain but keep the `4443` port. This example assumes you have a server running on `localhost:8080`.
