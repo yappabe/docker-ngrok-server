@@ -1,15 +1,11 @@
-FROM debian:jessie
-MAINTAINER Joeri Verdeyen <joeriv@yappa.be>
+FROM ubuntu:18.04
 
 RUN apt-get update && \
-    apt-get install -y build-essential golang git mercurial && \
-    mkdir -p /release
+	apt-get install -y build-essential golang git
 
-ENV NGROK_VERSION 1.7
 RUN git clone https://github.com/inconshreveable/ngrok.git /ngrok
-RUN cd /ngrok; git checkout -fq $NGROK_VERSION
 
-ADD *.sh /
+ADD scripts/*.sh /
 
 ENV TLS_KEY **None**
 ENV TLS_CERT **None**
