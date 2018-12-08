@@ -135,12 +135,12 @@ docker run --net host \
     -e TLS_CERT="`awk 1 ORS='\\n' certificate/device.crt`" \
     -e TLS_KEY="`awk 1 ORS='\\n' certificate/device.key`" \
     -e CA_CERT="`awk 1 ORS='\\n' certificate/rootCA.pem`" \
-    -e DOMAIN="tunnel.yourdomain.com:4443" \
+    -e DOMAIN="tunnel.yourdomain.com" \
     murilopolese/ngrok-server \
     ./run-client.sh -hostname=something.tunnel.yourdomain.com -config=/root/.ngrok 8080
 ```
 
-**IMPORTANT**: Remember to switch `tunnel.yourdomain.com:4443` by your domain but keep the `4443` port. This example assumes you have a server running on `localhost:8080`.
+**IMPORTANT**: Remember to switch `tunnel.yourdomain.com` by your domain. This example assumes you have a server running on `localhost:8080`.
 
 
 ## Environment Variables
