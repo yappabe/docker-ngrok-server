@@ -21,4 +21,4 @@ fi
 echo -e "${TLS_KEY}" > /server.key
 echo -e "${TLS_CERT}" > /server.crt
 
-exec /ngrok/bin/ngrokd -tlsKey=/server.key -tlsCrt=/server.crt -domain="${DOMAIN}" -httpAddr=${HTTP_ADDR} -httpsAddr=${HTTPS_ADDR} -tunnelAddr=${TUNNEL_ADDR}
+exec /ngrok/bin/ngrokd -tlsKey=/server.key -tlsCrt=/server.crt -domain="${DOMAIN}" -httpAddr=${HTTP_PORT} -httpsAddr=${HTTPS_PORT} -tunnelAddr=${TUNNEL_PORT}
